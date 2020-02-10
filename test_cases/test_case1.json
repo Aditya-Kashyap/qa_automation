@@ -1,11 +1,11 @@
 {
-  "name": "",
+  "name": "sample!@#$",
   "projectDescription": "Sample",
   "owner": {
-    "uid": "aditya.kashyap"
+    "uid": "kashyap"
   },
   "developers": [
-    "aditya.kashyap"
+    "reyaz35"
   ],
   "environments": "DEV",
   "persistent_volume_size": 2,

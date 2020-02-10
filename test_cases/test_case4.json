@@ -1,0 +1,26 @@
+{
+  "name": "adi_sample12",
+  "projectDescription": "Sample",
+  "owner": {
+    "uid": "aditya.kashyap"
+  },
+  "developers": [
+    "aditya.kashyap"
+  ],
+  "environments": "DEV",
+  "persistent_volume_size": 2,
+  "components": [
+  {
+            "type" : "job",
+            "flavor" : "python",
+            "name" : "service1",
+            "description" : "some description"
+  },
+  {
+            "type" : "job",
+            "flavor" : "python",
+            "name" : "service2",
+            "description" : "some description"
+  }
+  ]
+}
