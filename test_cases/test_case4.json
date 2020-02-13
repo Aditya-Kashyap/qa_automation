@@ -7,7 +7,7 @@
   "developers": [
     "aditya.kashyap"
   ],
-  "environments": "DEV",
+  "environments": "QA",
   "persistent_volume_size": 2,
   "components": [
   {
@@ -16,11 +16,31 @@
             "name" : "service1",
             "description" : "some description"
   },
-  {
-            "type" : "job",
+    {
+            "type" : "pipeline_job",
             "flavor" : "python",
             "name" : "service2",
             "description" : "some description"
+  },
+  {
+            "type" : "pipeline_job",
+            "flavor" : "java",
+            "name" : "service3",
+            "description" : "some description"
   }
-  ]
+  ],
+  "pipelines" : [
+        {
+            "name" : "tfx_taxi_cab_classification",
+            "components" : ["service1", "service2"],
+	    "after_dependencies": {"service1": ["service2"]}
+            
+        },
+        {
+            "name" : "pipeline1",
+            "components" : ["service3", "service1"],
+	    "after_dependencies": {"service1": ["service3"]}
+
+                    }
+	]
 }

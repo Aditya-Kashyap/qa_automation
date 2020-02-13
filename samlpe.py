@@ -1,36 +1,17 @@
-def solution(xs):
-    # Your code here
-    sol = 1
-    p = 1
-    n = 1
-    pos = []
-    neg = []
+name = ["comp1", "comp2", "comp3", "comp4"]
+job = ["job", "job", "pipeline_job", "pipeline_job"]
+types = ["python", "java", "python", "java"]
 
-    if max(xs) == 0 and min(xs) > 0:
-        return str(0)
-    elif max(xs) == 0 and min(xs) == 0:
-        return str(0)
+comp_name = ["comp2", "comp3"]
+comp_job = []
+comp_types = []
 
-    for i in xs:
-        if i > 0:
-            pos = pos.append(i)
-        elif i < 0:
-            neg = neg.appned(i)
+for j in range(len(comp_name)):
+    for i in range(len(name)):
+        if comp_name[j] == name[i]:
+            print("Found Ya!")
+            comp_job.append(job[i])
+            comp_types.append(types[i])
 
-    neg = neg.sort()
-    if neg.len() % 2 == 1:
-        neg = neg.remove(neg[len(neg) - 1])
-
-    for j in pos:
-        p = p * i
-
-    for k in pos:
-        n = n * i
-
-    sol = n * p
-    return str(sol)
-
-
-if __name__ == "__main__":
-    case0 = [2, 0, 2, 2, 0]
-    print("\nCase 0:\n ", case0, "\n\n  Expected: 8\nCalculated:", solution(case0))
+print(comp_job)
+print(comp_types)
