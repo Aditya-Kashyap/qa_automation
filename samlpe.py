@@ -1,17 +1,25 @@
-name = ["comp1", "comp2", "comp3", "comp4"]
-job = ["job", "job", "pipeline_job", "pipeline_job"]
-types = ["python", "java", "python", "java"]
+import json
 
-comp_name = ["comp2", "comp3"]
-comp_job = []
-comp_types = []
 
-for j in range(len(comp_name)):
-    for i in range(len(name)):
-        if comp_name[j] == name[i]:
-            print("Found Ya!")
-            comp_job.append(job[i])
-            comp_types.append(types[i])
+class HelloWorld:
+    def __init__(self):
+        pro = 'test_cases/create/test_case4.json'
+        with open(pro, 'r') as JsonFile:
+            data = json.load(JsonFile)
+            self.print_json(data)
 
-print(comp_job)
-print(comp_types)
+    @staticmethod
+    def print_json(data):
+        print(data["name"])
+        for i in range(2):
+            print("Helli")
+        for i in range(2):
+            print("World")
+
+
+def main():
+    HelloWorld()
+
+
+if __name__ == '__main__':
+    main()

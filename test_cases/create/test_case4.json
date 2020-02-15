@@ -7,7 +7,7 @@
   "developers": [
     "aditya.kashyap"
   ],
-  "environments": "QA",
+  "environments": ["QA"],
   "persistent_volume_size": 2,
   "components": [
   {

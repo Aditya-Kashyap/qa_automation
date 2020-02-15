@@ -26,6 +26,7 @@ class CheckFunctions:
     def check_environments(env):
         status = 0
         env_lib = ["DEV", "INT", "QA", "UAT", "PROD"]
+        print(env)
         for i in range(len(env_lib)):
             if env in env_lib:
                 status = 1
@@ -61,3 +62,18 @@ class CheckFunctions:
             else:
                 status = 0
         return status
+
+    @staticmethod
+    def check_branch(branch):
+        branch_list = ["master", "branch"]
+        if branch in branch_list:
+            return 1
+        else:
+            return 0
+
+    @staticmethod
+    def check_comp_in_comp_list(comp_list, comps):
+        if comps in comp_list:
+            return 1
+        else:
+            return 0
