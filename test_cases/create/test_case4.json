@@ -31,13 +31,13 @@
   ],
   "pipelines" : [
         {
-            "name" : "tfx_taxi_cab_classification",
+            "name" : "pipeline1",
             "components" : ["service1", "service2"],
 	    "after_dependencies": {"service1": ["service2"]}
             
         },
         {
-            "name" : "pipeline1",
+            "name" : "pipeline2",
             "components" : ["service3", "service1"],
 	    "after_dependencies": {"service1": ["service3"]}
 

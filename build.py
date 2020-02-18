@@ -77,7 +77,7 @@ class BuildProject:
                 # Checking the Total Pipelines
                 pipe_total = create_obj.get_pipelines()
                 # Taking out all the name of Pipeline in the Build Json
-                names_pipe = data["pipelines"].keys()
+                names_pipe = list(data["pipelines"].keys())
                 # Sending the name to check weather it is present in the Create Project or Not:
                 pipe_name = check.pipeline_name_check(pipe_total, names_pipe)
                 if pipe_name == 0:

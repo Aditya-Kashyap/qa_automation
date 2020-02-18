@@ -22,8 +22,8 @@ with open(pro, 'r') as JsonFile:
 if result == 1:
     for no in range(int(num)):
         # command_string = 'xprctl create_project -f test_cases/test_case4.json'
-        # command_string = "xprctl --help"
-        create_pro = Popen('pwd', shell=True)
+        command_string = "xprctl --help"
+        create_pro = Popen(command_string, shell=True)
         create_pro.wait()
 
     # Calling the Build
@@ -32,3 +32,7 @@ if result == 1:
         res = build_obj.build_project(build_pro)
         print("Build Result")
         print(res)
+        if res == 1:
+            command_string = "xprctl info"
+            create_pro = Popen(command_string, shell=True)
+            create_pro.wait()

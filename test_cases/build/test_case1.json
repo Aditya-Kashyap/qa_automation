@@ -7,7 +7,7 @@
 		}
 	},
 	"pipelines": {
-	   "sample_pipeline": {
+	   "pipeline1": {
 		  "branch":"master",
 		  "description": "build one"
 	   }

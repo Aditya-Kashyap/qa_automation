@@ -130,7 +130,14 @@ class CheckFunctions:
 
     @staticmethod
     def pipeline_name_check(pipe_total, name):
-        if name in pipe_total:
+        res = 0
+        print(name)
+        print(pipe_total)
+        for i in range(len(name)):
+            for j in range(len(pipe_total)):
+                if name[i] == pipe_total[j]:
+                    res = 1
+        if res == 1:
             return 1
         else:
             return 0
