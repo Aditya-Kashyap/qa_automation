@@ -1,11 +1,4 @@
-import json
-
-
-with open('test_cases/test_case2.json', 'r') as JsonFile:
-    data = json.load(JsonFile)
-    name = data["name"]
-    if name[0].islower():
-        print("Test Case Passed")
-    else:
-
-        print("Test Case Failed")
+a = {1: 1000, 2: 2000, 3: 3000}
+for i in range(len(a)):
+    print(a[i+1])
+print(list(a.keys()))

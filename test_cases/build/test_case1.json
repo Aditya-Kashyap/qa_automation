@@ -1,0 +1,15 @@
+{ 
+	"name": "pro_name",
+	"components":{
+		"service1": {
+			"branch": "master",
+			"description": "trial version - 1"
+		}
+	},
+	"pipelines": {
+	   "sample_pipeline": {
+		  "branch":"master",
+		  "description": "build one"
+	   }
+	}
+}

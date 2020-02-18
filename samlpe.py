@@ -1,25 +1,28 @@
-import json
+a = \
+    {
+        "pipelines":
+            {
+                "sample_pipeline":
+                    {
+                        "branch": "master",
+                        "description": "build one"
+                    }
+            }
+    }
 
+data2 = a["pipelines"]
+print(data2)
 
-class HelloWorld:
-    def __init__(self):
-        pro = 'test_cases/create/test_case4.json'
-        with open(pro, 'r') as JsonFile:
-            data = json.load(JsonFile)
-            self.print_json(data)
+branch = ""
+desc = ""
+for pipe in data2.keys():
+    val = data2[pipe]
+    for pipe_comp in val.keys():
+        val1 = data2[pipe][pipe_comp]
+        if pipe_comp == 'branch':
+            branch = val1
+        if pipe_comp == 'description':
+            desc = val1
 
-    @staticmethod
-    def print_json(data):
-        print(data["name"])
-        for i in range(2):
-            print("Helli")
-        for i in range(2):
-            print("World")
-
-
-def main():
-    HelloWorld()
-
-
-if __name__ == '__main__':
-    main()
+print(branch)
+print(desc)

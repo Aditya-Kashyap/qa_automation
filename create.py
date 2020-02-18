@@ -1,15 +1,121 @@
-from subprocess import *
-import json
-from project_automation import CreateProject
+from check_function import CheckFunctions
+
+# Creating the Object for CheckFunctions
+check = CheckFunctions()
+comp = []
+comp_type = []
+comp_flavor = []
+pipe_total_comp = []
 
 
-# Defining the main driver program
-def main(js):
-    # Reading the JSON Files:
-    pro = 'test_cases/create/test_case' + str(js + 1) + '.json'
-    with open(pro, 'r') as JsonFile:
-        data = json.load(JsonFile)
+class CreateProject:
 
+    @staticmethod
+    def project_values(name, u_id, env, per_vol):
+        # Checking the Project Name
+        if name.islower() and name[-1] != '_':
+            if check.check_name(name) == 0:
+                print("Error in the Name")
+                return 0
+            else:
+                # Checking the Owner
+                if check.check_user(u_id) == 0:
+                    print("Error in the User ID")
+                    return 0
+                else:
+                    # Checking The Environment
+                    if check.check_environments(env) == 0:
+                        print("Error in the Environment Specified")
+                        return 0
+                    else:
+                        # Checking the Persistent Volume
+                        if check.check_persistent_volume(per_vol) == 0:
+                            print("Error in the Persistent Volume")
+                            return 0
+                        else:
+                            return 1
+        else:
+            print("Error in Project Name: Capital Letter")
+            return 0
+
+    @staticmethod
+    def components_values(name, comp_type, flavor):
+        comp_name = check.check_name(name)
+        if comp_name == 0:
+            print("There is an Error in Name")
+            return 0
+        comp_type = check.check_comp_type(comp_type)
+        if comp_type == 0:
+            print("There is an Error in Component Type")
+            return 0
+        comp_flavour = check.check_comp_flavor(flavor)
+        if comp_flavour == 0:
+            print("There is an Error is the Component Flavor")
+            return 0
+        else:
+            return 1
+
+    @staticmethod
+    def pipeline_name_check(name):
+        if check.check_name(name) == 0:
+            print("There is an Error in the Pipeline Name")
+            return 0
+        else:
+            return 1
+
+    @staticmethod
+    def pipeline_comp_check(comp, comp_total):
+        # pipe_comp_type = ["job", "pipeline_job"]
+        found = 0
+        # found_comp = 0
+        # found_type = 0
+
+        if set(comp).issubset(comp_total):
+            found = 1
+        # if set(pipe_type).issubset(pipe_comp_type):
+        #     found_type = 1
+        #     print("Type Found")
+        # found = found_comp * found_type
+        if found == 0:
+            print("Pipeline Component is not present in the Main Components")
+            return 0
+        else:
+            return 1
+
+    @staticmethod
+    def after_dependencies(comp_pipe, comp):
+        found = 0
+        print(comp)
+        print(comp_pipe)
+        if set(comp).issubset(comp_pipe):
+            found = 1
+        if found == 1:
+            return 1
+        else:
+            print("After Dependencies is not present in the Pipeline Components")
+            return 0
+
+    @staticmethod
+    def get_comp():
+        return comp
+
+    @staticmethod
+    def get_comp_type():
+        return comp_type
+
+    @staticmethod
+    def get_comp_flavor():
+        return comp_flavor
+
+    @staticmethod
+    def get_pipelines():
+        return pipe_total_comp
+
+
+class Main:
+    # Defining the main driver program
+    @staticmethod
+    def main(data):
         # Defining the Object the class
         obj = CreateProject()
 
@@ -23,9 +129,8 @@ def main(js):
             # Calling the Component Values
             # Iterating for the Number of Components Present
             # If no components are present then exiting with return code 1
-            comp = []
-            comp_type = []
-            comp_flavor = []
+            compo = 1
+
             if len(data["components"]) > 0:
                 for j in range(len(data["components"])):
 
@@ -58,6 +163,11 @@ def main(js):
                         return 1
                     else:
                         result_comp = 0
+
+                        # Calculating the Total Pipelines:
+                        for k in range(len(data["pipelines"])):
+                            pipe_total_comp.append(data["pipelines"][k]["name"])
+
                         # Looping in the Total Number of Pipeline Components
                         for k in range(len(data["pipelines"])):
                             # Checking the Pipeline Name
@@ -102,16 +212,3 @@ def main(js):
             else:
                 # No Components is Present
                 return 1
-
-
-if __name__ == "__main__":
-    print("Enter the Number of Json Files")
-    num = input()
-    result = main(3)
-
-    if result == 1:
-        for no in range(int(num)):
-            # command_string = 'xprctl create_project -f test_cases/test_case' + str(no + 1) + '.json'
-            command_string = 'xprctl info'
-            create = Popen(command_string, shell=True)
-            create.wait()
