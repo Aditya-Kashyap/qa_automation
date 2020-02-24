@@ -1,0 +1,33 @@
+{
+  "name": "adi_sample12",
+  "projectDescription": "Sample",
+  "owner": {
+    "uid": "aditya.kashyap"
+  },
+  "developers": [
+    "aditya.kashyap"
+  ],
+  "environments": "DEV",
+  "persistent_volume_size": 2,
+  "components": [
+  {
+                        "type" : "job",
+                        "flavor" : "pyspark",
+                        "name" : "comp1",
+                        "description" : "some description"
+                },
+                {
+                        "type" : "job",
+                        "flavor" : "pyspark",
+                        "name" : "comp2",
+                        "description" : "some description"
+                }
+ {
+                        "type" : "job",
+                        "flavor" : "python",
+                        "name" : "comp3",
+                        "description" : "some description"
+                }
+  
+	]
+}

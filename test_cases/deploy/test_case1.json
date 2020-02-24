@@ -1,0 +1,68 @@
+{
+   "name":"sample_project",
+   "target_environment":"DEV",
+   "components":{
+    "comp3":{
+       "build_version" : 1,
+       "run_parameters":{
+          "driver_memory":"512m",
+          "executor_memory":"512m",
+          "executor_cores":1,
+          "num_executors":1,
+          "xpresso_run_name":"<xpresso_run_name>"
+               }
+             }
+        },
+
+        "pipelines":{
+        "pipeline1": {
+         "components": {
+            "comp1": {
+               "mount_path": "/data",
+               "custom_docker_image": "dockerregistry.xpresso.ai/library/xpresso_version:1.2.2",
+               "command": [],
+               "args": [
+                          "data_pull",
+                          "-in",
+                          {
+                             "inputValue": "inpath"
+                          },
+                          "-out",
+                          {
+                             "inputValue": "outpath"
+                          },
+                          "-r",
+                          {
+                             "inputValue": "repo_name"
+                          },
+                          "-b",
+                          {
+                             "inputValue": "branch_name"
+                          },
+                          "-c",
+                          {
+                             "inputValue": "commit"
+                          },
+                          "--type",
+                          "files",
+                          "-env",
+                          "qa"
+                       ]
+              },
+   
+                 "comp2": {
+               "mount_path": "/data",
+               "build_version": "1",
+               "command": [ ],
+               "args": [{"inputValue": "xpresso_run_name" },
+                         {
+                  "inputValue": "batch_size"
+               },
+               {
+                  "inputValue": "train_epochs"
+                    }]
+                  }
+         }
+       }
+     }
+}
