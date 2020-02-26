@@ -1,0 +1,47 @@
+{
+  "Name": "pipeline_experiments_demo_51",
+  "Project Description": "Demo of Pipeline Experiments",
+  "Owner": {
+    "Uid": "aditya.kashyap"
+  },
+  "Developers": [
+    "aditya.kashyap"
+  ],
+  "Currently Deployed": "True",
+  "Environments": "DEV",
+  "Components": [
+    {
+      "Name": "data_fetch",
+      "Type": "pipeline_job",
+      "Flavor": "python"
+    },
+    {
+      "Name": "dnn_data_prep",
+      "Type": "pipeline_job",
+      "Flavor": "python"
+    },
+    {
+      "Name": "dnn_train",
+      "Type": "pipeline_job",
+      "Flavor": "python"
+    },
+    {
+      "Name": "dnn_library",
+      "Type": "library",
+      "Flavor": "python"
+    }
+  ],
+  "Persistent Volume Size": 6,
+  "Activation Status": "True",
+  "Pipelines": {
+    "Name": "dnn_training_pipeline",
+    "Flavor": "kubeflow",
+    "Components": [
+      "data_fetch",
+      "dnn_data_prep",
+      "dnn_train"
+    ],
+    "Description": "DNN Training Pipeline",
+    "Code  Versioning  Repo": "https://bitbucket.org/xpresso_teams_stage/pipeline_experiments_demo_51"
+  }
+}
